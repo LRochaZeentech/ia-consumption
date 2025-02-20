@@ -132,7 +132,8 @@ else:
     #path_excel = os.path.join(os.getcwd(), "Base-Consumo.xlsx")
     #df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
-
+    df["Engine"] = df["Engine"].astype(str).str.strip()
+    df["Engine Calibration"] = df["Engine Calibration"].astype(str).str.strip()
     options_engine_calibration = df[df['Engine']==Engine_model]["Engine Calibration"].dropna().unique()
     Engine_Calibration = st.selectbox("Engine Calibration:", options_engine_calibration)
 

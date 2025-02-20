@@ -120,8 +120,7 @@ else:
         Transmission = st.selectbox("Transmission Model:", options_transmission)
         Engine_model = st.selectbox("Engine model:", options_engine_model)
 
-    # Caminho relativo para a imagem
-    path_excel = os.path.join(base_dir, "Base-Consumo.xlsx")
+    path_excel = os.path.join(os.getcwd(), "Base-Consumo.xlsx")
     df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
 

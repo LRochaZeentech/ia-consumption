@@ -13,6 +13,15 @@ import os
 # Obtém o diretório atual do script
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
+# Conectar ao banco de dados
+conn = sqlite3.connect("database.db")
+
+# Ler os dados da tabela para um DataFrame
+df = pd.read_sql("SELECT * FROM BaseConsumo", conn)
+
+# Fechar a conexão
+conn.close()
+
 # Caminho relativo para a imagem
 image_path = os.path.join(base_dir, "static", "logo-zeentech.png")
 
@@ -120,8 +129,8 @@ else:
         Transmission = st.selectbox("Transmission Model:", options_transmission)
         Engine_model = st.selectbox("Engine model:", options_engine_model)
 
-    path_excel = os.path.join(os.getcwd(), "Base-Consumo.xlsx")
-    df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
+    #path_excel = os.path.join(os.getcwd(), "Base-Consumo.xlsx")
+    #df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
 
     options_engine_calibration = df[df['Engine']==Engine_model]["Engine Calibration"].dropna().unique()

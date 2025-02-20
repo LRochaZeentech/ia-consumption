@@ -132,8 +132,6 @@ else:
     #path_excel = os.path.join(os.getcwd(), "Base-Consumo.xlsx")
     #df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
-    df["Engine"] = df["Engine"].astype(str).str.strip()
-    df["Engine Calibration"] = df["Engine Calibration"].astype(str).str.strip()
     options_engine_calibration = df[df['Engine']==Engine_model]["Engine Calibration"].dropna().unique()
     Engine_Calibration = st.selectbox("Engine Calibration:", options_engine_calibration)
 
@@ -243,7 +241,7 @@ else:
         # Exibir o gráfico e a tabela
         cols = st.columns([2, 1])
         with cols[0]:
-            st.image(buffer, caption="Consumption Predict", use_column_width=False, width=600)
+            st.image(buffer, caption="Consumption Predict", use_container_width=False, width=600)
         with cols[1]:
             data_list = pd.DataFrame(st.session_state.predict_earlier[index], columns=['Values'])
             data_list.loc[len(data_list)] = [st.session_state.predict[index]]

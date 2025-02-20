@@ -8,10 +8,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import io
 import sqlite3
+import os
+
+# Obtém o diretório atual do script
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Caminho relativo para a imagem
+image_path = os.path.join(base_dir, "static", "logo-zeentech.png")
 
 st.set_page_config(
         page_title="Consumption predict - IA",
-        page_icon=r'C:\Users\LUCASDOSSANTOSROCHA\OneDrive - Zeentech Brasil\Área de Trabalho\Streamlit\static\logo-zeentech.png',
+        page_icon=image_path,
         layout="wide",
         initial_sidebar_state="expanded"  # Sidebar expandido e fixo
     )
@@ -26,8 +33,11 @@ def carregar_scaler():
 
 scaler = carregar_scaler()
 
+# Caminho relativo para a imagem
+image_path_vinho = os.path.join(base_dir, "static", "ZeentechIDT_-_Vinho.png")
+
 # Título da aplicação
-st.image(r'C:\Users\LUCASDOSSANTOSROCHA\OneDrive - Zeentech Brasil\Área de Trabalho\Consumo IA\static\ZeentechIDT_-_Vinho.png', width=170)
+st.image(image_path_vinho, width=170)
 st.title("Consumption Predict")
 
 def verificar_usuario(username, password):
@@ -110,7 +120,7 @@ else:
         Transmission = st.selectbox("Transmission Model:", options_transmission)
         Engine_model = st.selectbox("Engine model:", options_engine_model)
 
-    df = pd.read_excel(r'C:\Users\LUCASDOSSANTOSROCHA\OneDrive - Zeentech Brasil\Área de Trabalho\Consumo IA\Base-Consumo.xlsx', engine = 'openpyxl', sheet_name='MN')  
+    df = pd.read_excel(r'Base-Consumo.xlsx', engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
 
     options_engine_calibration = df[df['Engine']==Engine_model]["Engine Calibration"].dropna().unique()

@@ -120,7 +120,9 @@ else:
         Transmission = st.selectbox("Transmission Model:", options_transmission)
         Engine_model = st.selectbox("Engine model:", options_engine_model)
 
-    df = pd.read_excel(r'Base-Consumo.xlsx', engine = 'openpyxl', sheet_name='MN')  
+    # Caminho relativo para a imagem
+    path_excel = os.path.join(base_dir, "Base-Consumo.xlsx")
+    df = pd.read_excel(path_excel, engine = 'openpyxl', sheet_name='MN')  
     df = df[['Engine', 'Engine Calibration']]
 
     options_engine_calibration = df[df['Engine']==Engine_model]["Engine Calibration"].dropna().unique()

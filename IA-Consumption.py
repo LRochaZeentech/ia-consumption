@@ -25,6 +25,8 @@ conn.close()
 # Caminho relativo para a imagem
 image_path = os.path.join(base_dir, "static", "logo-zeentech.png")
 
+st.set_option('deprecation.showfileUploaderEncoding', False)  # Oculta mensagens de aviso de depreciação
+st.set_option('client.showErrorDetails', False)  # Oculta detalhes de erros
 st.set_page_config(
         page_title="Consumption predict - IA",
         page_icon=image_path,
